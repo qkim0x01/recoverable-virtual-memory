@@ -1,5 +1,14 @@
 ---
-1. Data Structures Description
+1. About the Library
+---
+
+This is a user-level libary for recoverable virtual memory system like the ones described in the *Lightweight Recoverable Virtual Memory* and *Free Transactions with Rio Vista* papers. Users of of this library can create persistent segments of memory and then access them in a sequence of transactions.
+
+Before writing changes directly to the backing file, it first write the intended changes to a undo-log file on memory. Then, if the program crashes, it is possible to read the log and see what changes were in progress.
+
+
+---
+2. Data Structures Description
 ---
 
 	rvm_t - pointer to structure that describes RVM process. The structure includes following fields:
@@ -67,7 +76,7 @@
 - void rvm_truncate_log(rvm_t rvm) 
 	- perform log trancation for all the logs of rvm from files segname.redo to file segname.log. segname.redo is deleted after truncation.
 
-LOG Format
+**LOG Format**
 
 +---------+-----------------------------------------------------------------------
 
